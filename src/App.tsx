@@ -1,3 +1,4 @@
+import AudioPlayer from "./components/audioPlayer";
 import Background from "./components/background";
 import PauseButton from "./components/buttons/pause";
 import StartButton from "./components/buttons/start";
@@ -16,6 +17,7 @@ function App() {
           <ClockContainer>
             <ClockTimer />
           </ClockContainer>
+          <AudioPlayer />
           <ButtonContainer>
             <StopButton />
             <StartButton />
