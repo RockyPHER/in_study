@@ -1,11 +1,24 @@
-import Sidebar from "./components/containers/sidebar.tsx";
+import { useState } from "react";
+import Window from "./components/containers/window.tsx";
+import Sidebar from "./components/sidebar.tsx";
 
-// import Background from "./components/background";
 function App() {
+  const [window, setWindow] = useState(false);
+
+  const handleWindow = () => {
+    setWindow(!window);
+  };
+
+  const closeWindow = () => {
+    setWindow(false);
+  };
+
   return (
     <div className="w-screen h-screen overflow-hidden">
-      <Sidebar />
-      <div className="w-full h-full flex justify-center items-center"></div>
+      <Sidebar onClick={handleWindow} />
+      <div className="w-full h-full flex justify-center items-center">
+        {window && <Window onClick={closeWindow}>test</Window>}
+      </div>
     </div>
   );
 }
