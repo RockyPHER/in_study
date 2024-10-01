@@ -8,14 +8,16 @@ const Pomodoro = () => {
     setPlay(!play);
   };
   return (
-    <div className="w-[400px] h-[300px] flex flex-col gap-2 items-center bg-gray-500 bg-opacity-30 rounded select-none">
-      <div className="flex gap-2">
-        <ButtonPomoTop>Work</ButtonPomoTop>
-        <ButtonPomoTop>Short Break</ButtonPomoTop>
-        <ButtonPomoTop>Long Break</ButtonPomoTop>
-      </div>
-      <div>
-        <h1 className="text-9xl">00:00</h1>
+    <div className="w-[500px] h-[500px] flex flex-col justify-evenly items-center bg-gray-500 bg-opacity-30 rounded select-none">
+      <div className="w-auto h-auto justify-center items-center flex flex-col gap-8">
+        <div className="flex gap-2">
+          <ButtonPomoTop>Work</ButtonPomoTop>
+          <ButtonPomoTop>Short Break</ButtonPomoTop>
+          <ButtonPomoTop>Long Break</ButtonPomoTop>
+        </div>
+        <div className="w-auto h-auto">
+          <h1 className="text-9xl">00:00</h1>
+        </div>
       </div>
       <div className="flex gap-1 justify-center items-center">
         <button>

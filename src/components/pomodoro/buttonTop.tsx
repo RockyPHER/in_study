@@ -7,7 +7,7 @@ interface Props {
 const ButtonPomoTop = ({ children }: Props) => {
   return (
     <div>
-      <button className="w-[120px] h-[35px] bg-white rounded-xl border border-black">
+      <button className="min-w-[120px] w-auto h-auto px-2 py-1 rounded-xl border border-transparent hover:border-gray-800 text-lg font-semibold">
         {children}
       </button>
     </div>

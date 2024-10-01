@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick: () => void | undefined;
 }
 
-const ButtonSBar = ({ children, onClick }: ButtonProps) => {
+const ButtonSideBar = ({ children, onClick }: ButtonProps) => {
   return (
     <div>
       <button
@@ -18,4 +18,4 @@ const ButtonSBar = ({ children, onClick }: ButtonProps) => {
   );
 };
 
-export default ButtonSBar;
+export default ButtonSideBar;
