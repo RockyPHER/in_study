@@ -1,4 +1,4 @@
-import ButtonWindow from "../buttons/buttonWindow";
+import ButtonWindow from "./button";
 import { Minus } from "lucide-react";
 
 interface Props {

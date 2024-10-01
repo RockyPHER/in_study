@@ -1,23 +1,19 @@
 import { useState } from "react";
-import Window from "./components/containers/window.tsx";
-import Sidebar from "./components/sidebar.tsx";
+import Sidebar from "./components/containers/sidebar/main.tsx";
+import Pomodoro from "./components/pomodoro/main.tsx";
 
 function App() {
-  const [window, setWindow] = useState(false);
+  const [showPomodoro, setShowPomodoro] = useState(false);
 
-  const handleWindow = () => {
-    setWindow(!window);
-  };
-
-  const closeWindow = () => {
-    setWindow(false);
+  const handlePomodoro = () => {
+    setShowPomodoro(!showPomodoro);
   };
 
   return (
     <div className="w-screen h-screen overflow-hidden">
-      <Sidebar onClick={handleWindow} />
+      <Sidebar onClick={handlePomodoro} />
       <div className="w-full h-full flex justify-center items-center">
-        {window && <Window onClick={closeWindow}>test</Window>}
+        {showPomodoro && <Pomodoro />}
       </div>
     </div>
   );
