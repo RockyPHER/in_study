@@ -7,7 +7,9 @@ interface Props {
 const ButtonPomoTime = ({ children }: Props) => {
   return (
     <div>
-      <button>{children}</button>
+      <button className="w-auto h-auto active:scale-90 transition-all p-2 rounded-full">
+        {children}
+      </button>
     </div>
   );
 };

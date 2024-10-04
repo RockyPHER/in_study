@@ -1,6 +1,8 @@
 import { Bolt, Pause, Play, RotateCcw } from "lucide-react";
 import ButtonPomoTop from "./buttonTop";
 import { useState } from "react";
+import ButtonPomoTime from "./buttonTime";
+import Time from "./time";
 
 const Pomodoro = () => {
   const [play, setPlay] = useState(false);
@@ -8,31 +10,35 @@ const Pomodoro = () => {
     setPlay(!play);
   };
   return (
-    <div className="w-[500px] h-[500px] flex flex-col justify-evenly items-center bg-gray-500 bg-opacity-30 rounded select-none">
+    <div className="relative w-[500px] h-[500px] flex flex-col justify-evenly items-center select-none border-2 rounded">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-full bg-black"></div>
       <div className="w-auto h-auto justify-center items-center flex flex-col gap-8">
-        <div className="flex gap-2">
+        <div className="w-full h-auto flex gap-2 justify-center items-center">
           <ButtonPomoTop>Work</ButtonPomoTop>
           <ButtonPomoTop>Short Break</ButtonPomoTop>
           <ButtonPomoTop>Long Break</ButtonPomoTop>
         </div>
-        <div className="w-auto h-auto">
-          <h1 className="text-9xl">00:00</h1>
+        <div className="w-full h-auto flex justify-center items-center">
+          <Time min="00" sec="00" />
         </div>
       </div>
-      <div className="flex gap-1 justify-center items-center">
-        <button>
+      <div className="w-full h-auto flex gap-4 justify-center items-center">
+        <ButtonPomoTime>
           <Bolt size={35} />
-        </button>
-        <button onClick={handlePlay} className="w-auto h-auto">
+        </ButtonPomoTime>
+        <button
+          onClick={handlePlay}
+          className="w-auto h-auto p-3 active:bg-slate-500 active:bg-opacity-40 active:scale-95 rounded-full border-2 border-black transition-all"
+        >
           {play ? (
-            <Play fill="black" size={60} />
+            <Play className="transition-all" size={60} />
           ) : (
-            <Pause fill="black" size={60} />
+            <Pause className="transition-all" size={60} />
           )}
         </button>
-        <button>
+        <ButtonPomoTime>
           <RotateCcw size={35} />
-        </button>
+        </ButtonPomoTime>
       </div>
     </div>
   );
