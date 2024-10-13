@@ -5,11 +5,30 @@ import ButtonPomoTime from "./buttonTime";
 import Time from "./time";
 
 const Pomodoro = () => {
-  const [time, setTime] = useState(5);
+  const mode = {
+    work: 25 * 60,
+    short: 5 * 60,
+    long: 15 * 60,
+  };
+
+  const [time, setTime] = useState(mode.work);
   const [play, setPlay] = useState(false);
+  const [currentMode, setCurrentMode] = useState("work");
+
   const handlePlay = () => {
     if (time === 0) return;
     setPlay(!play);
+  };
+
+  const handleReset = () => {
+    setPlay(false);
+    setTime(mode[currentMode as keyof typeof mode]);
+  };
+
+  const handleModeChange = (newMode: string) => {
+    setPlay(false);
+    setCurrentMode(newMode);
+    setTime(mode[newMode as keyof typeof mode]);
   };
 
   useEffect(() => {
@@ -27,9 +46,15 @@ const Pomodoro = () => {
     <div className="relative w-[500px] h-[500px] flex flex-col justify-evenly items-center select-none border-2 rounded">
       <div className="w-auto h-auto justify-center items-center flex flex-col gap-8">
         <div className="w-full h-auto flex gap-2 justify-center items-center">
-          <ButtonPomoTop>Work</ButtonPomoTop>
-          <ButtonPomoTop>Short Break</ButtonPomoTop>
-          <ButtonPomoTop>Long Break</ButtonPomoTop>
+          <ButtonPomoTop onClick={() => handleModeChange("work")}>
+            Work
+          </ButtonPomoTop>
+          <ButtonPomoTop onClick={() => handleModeChange("short")}>
+            Short Break
+          </ButtonPomoTop>
+          <ButtonPomoTop onClick={() => handleModeChange("long")}>
+            Long Break
+          </ButtonPomoTop>
         </div>
         <div className="w-full h-auto flex justify-center items-center">
           <Time time={time} />
@@ -49,7 +74,7 @@ const Pomodoro = () => {
             <Play className="transition-all" size={60} />
           )}
         </button>
-        <ButtonPomoTime onClick={() => setTime(5)}>
+        <ButtonPomoTime onClick={() => handleReset()}>
           <RotateCcw size={35} />
         </ButtonPomoTime>
       </div>
