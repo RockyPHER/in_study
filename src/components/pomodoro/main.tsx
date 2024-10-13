@@ -3,8 +3,12 @@ import ButtonPomoTop from "./buttonTop";
 import { useEffect, useState } from "react";
 import ButtonPomoTime from "./buttonTime";
 import Time from "./time";
+import Modal from "../modal/modal";
+import PomodoroConfig from "../modal/pomoConfig";
 
 const Pomodoro = () => {
+  const [openConfig, setOpenConfig] = useState(false);
+
   const mode = {
     work: 25 * 60,
     short: 5 * 60,
@@ -31,6 +35,10 @@ const Pomodoro = () => {
     setTime(mode[newMode as keyof typeof mode]);
   };
 
+  const handleOpenConfig = () => {
+    setOpenConfig(!openConfig);
+  };
+
   useEffect(() => {
     if (play) {
       const interval = setInterval(() => {
@@ -44,6 +52,11 @@ const Pomodoro = () => {
 
   return (
     <div className="relative w-[500px] h-[500px] flex flex-col justify-evenly items-center select-none border-2 rounded">
+      {openConfig && (
+        <Modal>
+          <PomodoroConfig close={() => handleOpenConfig()} />
+        </Modal>
+      )}
       <div className="w-auto h-auto justify-center items-center flex flex-col gap-8">
         <div className="w-full h-auto flex gap-2 justify-center items-center">
           <ButtonPomoTop onClick={() => handleModeChange("work")}>
@@ -61,7 +74,7 @@ const Pomodoro = () => {
         </div>
       </div>
       <div className="w-full h-auto flex gap-4 justify-center items-center">
-        <ButtonPomoTime>
+        <ButtonPomoTime onClick={() => handleOpenConfig()}>
           <Bolt size={35} />
         </ButtonPomoTime>
         <button

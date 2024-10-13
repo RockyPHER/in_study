@@ -3,7 +3,7 @@ import Sidebar from "./components/containers/sidebar/main.tsx";
 import Pomodoro from "./components/pomodoro/main.tsx";
 
 function App() {
-  const [showPomodoro, setShowPomodoro] = useState(false);
+  const [showPomodoro, setShowPomodoro] = useState(true);
 
   const handlePomodoro = () => {
     setShowPomodoro(!showPomodoro);
