@@ -1,21 +1,20 @@
 import { Bolt, Pause, Play, RotateCcw } from "lucide-react";
 import ButtonPomoTop from "./buttonTop";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ButtonPomoTime from "./buttonTime";
 import Time from "./time";
 import Modal from "../modal/modal";
 import PomodoroConfig from "../modal/pomoConfig";
 
-const Pomodoro = () => {
+interface Props {
+  time: number;
+  setTime: React.Dispatch<React.SetStateAction<number>>;
+  mode: { work: number; short: number; long: number };
+}
+
+const Pomodoro = ({ time, setTime, mode }: Props) => {
   const [openConfig, setOpenConfig] = useState(false);
 
-  const mode = {
-    work: 25 * 60,
-    short: 5 * 60,
-    long: 15 * 60,
-  };
-
-  const [time, setTime] = useState(mode.work);
   const [play, setPlay] = useState(false);
   const [currentMode, setCurrentMode] = useState("work");
 
