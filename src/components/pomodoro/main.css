@@ -1,0 +1,4 @@
+.rotate {
+  transform: rotate(-360deg); /* Rotação de 360 graus no sentido anti-horário */
+  transition: transform 0.5s ease; /* Transição suave */
+}
