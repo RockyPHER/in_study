@@ -1,6 +1,6 @@
 import { Bolt, Pause, Play, RotateCcw } from "lucide-react";
 import ButtonPomoTop from "./buttonTop";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ButtonPomoTime from "./buttonTime";
 import Time from "./time";
 import Modal from "../modal/modal";
@@ -8,11 +8,12 @@ import PomodoroConfig from "../modal/pomoConfig";
 
 interface Props {
   time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
+  setTime: (time: number) => void;
   mode: { work: number; short: number; long: number };
+  setMode: (mode: { work: number; short: number; long: number }) => void;
 }
 
-const Pomodoro = ({ time, setTime, mode }: Props) => {
+const Pomodoro = ({ time, setTime, mode, setMode }: Props) => {
   const [openConfig, setOpenConfig] = useState(false);
 
   const [play, setPlay] = useState(false);
@@ -43,7 +44,7 @@ const Pomodoro = ({ time, setTime, mode }: Props) => {
       const interval = setInterval(() => {
         if (time - 1 === 0) setPlay(false);
 
-        setTime((prevTime) => prevTime - 1);
+        setTime(time - 1);
       }, 1000);
       return () => clearInterval(interval);
     }
@@ -53,7 +54,11 @@ const Pomodoro = ({ time, setTime, mode }: Props) => {
     <div className="relative w-[500px] h-[500px] flex flex-col justify-evenly items-center select-none border-2 rounded">
       {openConfig && (
         <Modal>
-          <PomodoroConfig close={() => handleOpenConfig()} />
+          <PomodoroConfig
+            modeTime={mode}
+            setModeTime={setMode}
+            close={() => handleOpenConfig()}
+          />
         </Modal>
       )}
       <div className="w-auto h-auto justify-center items-center flex flex-col gap-8">
