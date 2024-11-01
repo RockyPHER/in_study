@@ -31,14 +31,13 @@ function App() {
     <div className="w-screen h-screen overflow-hidden">
       <Sidebar onClick={handlePomodoro} />
       <div className="w-full h-full flex justify-center items-center">
-        {showPomodoro && (
-          <Pomodoro
-            mode={mode}
-            setMode={handleSetMode}
-            time={time}
-            setTime={handleSetTime}
-          />
-        )}
+        <Pomodoro
+          visibility={showPomodoro}
+          mode={mode}
+          setMode={handleSetMode}
+          time={time}
+          setTime={handleSetTime}
+        />
       </div>
     </div>
   );

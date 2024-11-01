@@ -11,13 +11,18 @@ interface Props {
   setTime: (time: number) => void;
   mode: { work: number; short: number; long: number };
   setMode: (mode: { work: number; short: number; long: number }) => void;
+  visibility: boolean;
 }
 
-const Pomodoro = ({ time, setTime, mode, setMode }: Props) => {
+const Pomodoro = ({ time, setTime, mode, setMode, visibility }: Props) => {
   const [openConfig, setOpenConfig] = useState(false);
 
   const [play, setPlay] = useState(false);
   const [currentMode, setCurrentMode] = useState("work");
+
+  const endTimer = () => {
+    setPlay(false);
+  };
 
   const handlePlay = () => {
     if (time === 0) return;
@@ -42,7 +47,7 @@ const Pomodoro = ({ time, setTime, mode, setMode }: Props) => {
   useEffect(() => {
     if (play) {
       const interval = setInterval(() => {
-        if (time - 1 === 0) setPlay(false);
+        if (time - 1 === 0) endTimer();
 
         setTime(time - 1);
       }, 1000);
@@ -51,7 +56,12 @@ const Pomodoro = ({ time, setTime, mode, setMode }: Props) => {
   });
 
   return (
-    <div className="relative w-[500px] h-[500px] flex flex-col justify-evenly items-center select-none border-2 rounded">
+    <div
+      style={{
+        display: visibility ? "flex" : "none",
+      }}
+      className="relative w-[500px] h-[500px] flex flex-col justify-evenly items-center select-none border-2 rounded"
+    >
       {openConfig && (
         <Modal>
           <PomodoroConfig
