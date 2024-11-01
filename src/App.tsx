@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "./components/containers/sidebar/main.tsx";
 import Pomodoro from "./components/pomodoro/main.tsx";
+import Tasklist from "./components/tasklist/main.tsx";
 
 function App() {
   const [mode, setMode] = useState({
@@ -38,6 +39,9 @@ function App() {
           time={time}
           setTime={handleSetTime}
         />
+      </div>
+      <div className="w-full h-full px-5 absolute flex justify-end items-center top-0 left-0">
+        <Tasklist />
       </div>
     </div>
   );
