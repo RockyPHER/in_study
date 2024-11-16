@@ -2,9 +2,10 @@ import { AudioLines, Bolt, Clock, LayoutList, Plus } from "lucide-react";
 import ButtonSideBar from "./button";
 
 interface Props {
-  onClick: () => void;
+  openPomodoro: () => void;
+  openList: () => void;
 }
-const Sidebar = ({ onClick }: Props) => {
+const Sidebar = ({ openPomodoro, openList }: Props) => {
   return (
     /* TODO:
      - deixar translúcido
@@ -13,13 +14,13 @@ const Sidebar = ({ onClick }: Props) => {
     <div className="w-[60px] h-min-[40%] absolute top-1/2 left-[5%] -translate-y-1/2 flex flex-col justify-center items-center rounded-lg bg-gray-800 bg-opacity-30 backdrop-blur-sm shadow">
       <div className="w-full h-full py-3 px-2 relative flex flex-col justify-evenly items-center">
         <div className="flex flex-col justify-center items-center gap-2">
-          <ButtonSideBar onClick={onClick}>
+          <ButtonSideBar onClick={openPomodoro}>
             <Clock size={30} />
           </ButtonSideBar>
-          {/* <ButtonSideBar>
+          <ButtonSideBar onClick={openList}>
             <LayoutList size={30} />
           </ButtonSideBar>
-          <ButtonSideBar>
+          {/* <ButtonSideBar>
             <AudioLines size={30} />
           </ButtonSideBar> */}
         </div>

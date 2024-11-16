@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 interface Props {
   id: number;
   name: string;
-  remove: (key: undefined) => void;
+  remove: (id: number) => void;
 }
 
 const Task = ({ name, id, remove }: Props) => {

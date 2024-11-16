@@ -93,12 +93,18 @@ const Pomodoro = ({ time, setTime, mode, setMode, visibility }: Props) => {
         </ButtonPomoTime>
         <button
           onClick={handlePlay}
-          className="w-auto h-auto p-3 active:bg-slate-500 active:bg-opacity-40 active:scale-95 rounded-full border-2 border-black transition-all"
+          className="group w-auto h-auto p-3 hover:bg-blue-500 hover:border-transparent active:bg-slate-500 active:bg-opacity-40 active:scale-95 rounded-full border-2 border-black transition-all"
         >
           {play ? (
-            <Pause className="transition-all" size={60} />
+            <Pause
+              className="text-black group-hover:text-white transition-all"
+              size={60}
+            />
           ) : (
-            <Play className="transition-all" size={60} />
+            <Play
+              className="text-black group-hover:text-white transition-all"
+              size={60}
+            />
           )}
         </button>
         <ButtonPomoTime onClick={() => handleReset()}>

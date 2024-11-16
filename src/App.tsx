@@ -11,10 +11,14 @@ function App() {
   });
 
   const [showPomodoro, setShowPomodoro] = useState(true);
+  const [showList, setShowList] = useState(false);
   const [time, setTime] = useState(mode.work);
 
   const handlePomodoro = () => {
     setShowPomodoro(!showPomodoro);
+  };
+  const handleList = () => {
+    setShowList(!showList);
   };
 
   const handleSetTime = (time: number) => {
@@ -30,7 +34,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen overflow-hidden">
-      <Sidebar onClick={handlePomodoro} />
+      <Sidebar openPomodoro={handlePomodoro} openList={handleList} />
       <div className="w-full h-full flex justify-center items-center">
         <Pomodoro
           visibility={showPomodoro}
@@ -40,9 +44,7 @@ function App() {
           setTime={handleSetTime}
         />
       </div>
-      <div className="w-full h-full px-5 absolute flex justify-end items-center top-0 left-0">
-        <Tasklist />
-      </div>
+      <Tasklist visibility={showList} />
     </div>
   );
 }
