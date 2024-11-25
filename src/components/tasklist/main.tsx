@@ -6,13 +6,13 @@ interface TaskListProps {
   visibility: boolean;
 }
 
-interface Task {
+export interface ITask {
   id: number;
   name: string;
 }
 
 const TaskList = ({ visibility }: TaskListProps) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   const addTask = () => {
     const newTask = {
@@ -20,6 +20,13 @@ const TaskList = ({ visibility }: TaskListProps) => {
       name: "Task",
     };
     setTasks([...tasks, newTask]);
+  };
+
+  const updateTask = (newTask: ITask) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === newTask.id ? newTask : task
+    );
+    setTasks(updatedTasks);
   };
 
   const removeTask = (id: number) => {
@@ -39,12 +46,13 @@ const TaskList = ({ visibility }: TaskListProps) => {
       <div className="flex flex-col h-full justify-between">
         <div className="flex h-auto px-2 flex-col">
           <div className="w-full h-[430px] flex flex-col overflow-y-scroll no-scrollbar">
-            {tasks.map((task, index) => (
+            {tasks.map((task) => (
               <Task
                 id={task.id}
                 name={task.name}
                 remove={removeTask}
-                key={index}
+                updateTask={updateTask}
+                key={task.id}
               />
             ))}
           </div>
